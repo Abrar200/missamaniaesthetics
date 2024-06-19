@@ -1,0 +1,340 @@
+{% load static %}
+
+<!doctype html>
+<html class="no-js" lang="zxx">
+   
+<!-- Mirrored from template.wphix.com/vamary-prv/vamary/index-3.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 15 Jun 2024 08:00:32 GMT -->
+<head>
+      <meta charset="utf-8">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      <title>Miss Amani Aesthetics</title>
+      <meta name="description" content="">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <!-- Place favicon.ico in the root directory -->
+      <link rel="shortcut icon" type="image/x-icon" href="{% static "appointment/assets/img/banner/favicon.jpg" %}">
+
+      <!-- CSS here -->
+      <link rel="stylesheet" href="{% static "appointment/assets/css/bootstrap.css" %}">
+      <link rel="stylesheet" href="{% static "appointment/assets/css/animate.css" %}">
+      <link rel="stylesheet" href="{% static "appointment/assets/css/swiper-bundle.css" %}">
+      <link rel="stylesheet" href="{% static "appointment/assets/css/slick.css" %}">
+      <link rel="stylesheet" href="{% static "appointment/assets/css/nouislider.css" %}">
+      <link rel="stylesheet" href="{% static "appointment/assets/css/magnific-popup.css" %}">
+      <link rel="stylesheet" href="{% static "appointment/assets/css/splide.css" %}">
+      <link rel="stylesheet" href="{% static "appointment/assets/css/font-awesome-pro.css" %}">
+      <link rel="stylesheet" href="{% static "appointment/assets/css/odometer.css" %}">
+      <link rel="stylesheet" href="{% static "appointment/assets/css/spacing.css" %}">
+      <link rel="stylesheet" href="{% static "appointment/assets/css/main.css" %}">
+   </head>
+   <body>
+      <!--[if lte IE 9]>
+      <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+      <![endif]-->
+
+
+      <!-- back to top start -->
+      <div class="back-to-top-wrapper">
+         <button id="back_to_top" type="button" class="back-to-top-btn">
+            <svg width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+               <path d="M11 6L6 1L1 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>               
+         </button>
+      </div>
+      <!-- back to top end -->
+
+      <!-- header area start -->
+      <header>
+         <div class="header__area header-3 tp-header-height">
+            <div class="header__top theme-bg-5 d-none d-md-block">
+               <div class="container">
+                  <div class="row align-items-center">
+                     <div class="col-xl-6 col-lg-5 col-md-5">
+                        <div class="header-top-right">
+                           <span>Get your free consultation today!</span>
+                        </div>
+                     </div>
+                     <div class="col-xl-6 col-lg-7 col-md-7">
+                        <div class="header__top-right d-flex justify-content-end align-items-center">
+                           <div class="header__social">
+                              <ul>
+                                 <li><a href="tel:0123456"><i class="fa-light fa-phone"></i> Need Help? Call Us: +8880 2395 1928</a></li>
+                                 <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
+                                 <li><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
+                                 <li><a href="#"><i class="fa-brands fa-google-plus-g"></i></a></li>
+                                 <li><a href="#"><i class="fa-brands fa-linkedin-in"></i></a></li>
+                              </ul>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="header__bottom-wrap theme-bg-6" id="header-sticky">
+               <div class="container">
+                  <div class="header__border-3">
+                     <div class="row align-items-center">
+                        <div class="col-xxl-3 col-xl-2 col-lg-6 col-md-6 col-6">
+                           <div class="logo">
+                              <a href="{% url "home" %}">
+                                 <img style="height:80px" src="{% static "appointment/assets/img/banner/logo2.png" %}" alt="logo">
+                              </a>
+                           </div>
+                        </div>
+                        <div class="col-xxl-6 col-xl-7  d-none d-xl-block">
+                           <div class="main-menu main-menu-3">
+                              <nav id="mobile-menu" class="tp-main-menu-content">
+                                 <ul>
+                                    <li class="has-dropdown">
+                                       <a href="{% url "home" %}">Home</a>
+                                    </li>
+                                    <li>
+                                       <a href="{% url "about" %}">About</a>
+                                    </li>
+                                    <li>
+                                       <a href="{% url "contact" %}">Contact</a>
+                                    </li>
+                                 </ul>
+                              </nav>
+                           </div>
+                        </div>
+                        <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-6">
+                           <div class="header__bottom-right d-flex justify-content-end align-items-center">
+                              <div class="header__right d-flex justify-content-end align-items-center">
+                                 <div class="header__btn-3 d-none d-md-block">
+                                    <a class="tp-btn" href="{% url "appointment" %}">Get An Appointment</a>
+                                 </div>
+                              </div>
+                              <div class="offcanvas-btn d-xl-none ml-20">
+                                 <button class="offcanvas-open-btn"><i class="fa-solid fa-bars"></i></button>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </header>
+      <!-- header area end -->
+
+      <!-- offcanvas area start -->
+      <div class="offcanvas__area">
+         <div class="offcanvas__wrapper">
+            <div class="offcanvas__close">
+               <button class="offcanvas__close-btn offcanvas-close-btn">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                     <path d="M11 1L1 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                     <path d="M1 1L11 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                  </svg>
+               </button>
+            </div>
+            <div class="offcanvas__content">
+               <div class="offcanvas__top mb-70 d-flex justify-content-between align-items-center">
+                  <div class="offcanvas__logo logo">
+                     <a href="index.html">
+                        <img src="{% static "appointment/assets/img/logo/logo.png" %}" alt="logo">
+                     </a>
+                  </div>
+               </div>
+               <div class="tp-main-menu-mobile"></div>
+               <div class="offcanvas__btn">
+                  <a href="contact.html" class="tp-btn-offcanvas">Getting Started <i
+                        class="fa-regular fa-chevron-right"></i></a>
+               </div>
+               <div class="side-info-contact">
+                  <span>we are here</span>
+                  <p>1489 Langley Ave <br> Grand Forks Afb, North.</p>
+               </div>
+               <div class="side-info-social">
+                  <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                  <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                  <a href="#"><i class="fa-brands fa-pinterest-p"></i></a>
+                  <a href="#"><i class="fa-solid fa-paper-plane"></i></a>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="body-overlay"></div>
+      <!-- offcanvas area end -->
+
+      {% block content %}
+
+      {% endblock content %}
+      
+      <!-- footer-area-start -->
+      <footer>
+         <div class="footer-area">
+            <div class="footer-top-3 theme-bg-6 pt-80 pb-15">
+               <div class="container">
+                  <div class="row">
+                     <div class="col-lg-3 col-md-6">
+                        <div class="footer-widget footer-3-col-1 mb-70 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".2s">
+                           <div class="footer-logo">
+                              <a href="{% url "home" %}"><img src="{% static "appointment/assets/img/banner/logo2.png" %}" alt=""></a>
+                           </div>
+                           <div class="footer-content">
+                              <div class="footer-info">
+                                 <p>Lorem ipsum dolor sit amet for consectetur adipiscing elit.</p>
+                              </div>
+                              <ul class="footer-info-list">
+                                 <li>
+                                    <i>
+                                       <img src="{% static "appointment/assets/img/icon/location.svg" %}" alt="">
+                                    </i>
+                                    <a href="#">268 Elizabeth Road, Broklyn 2390, USA</a>
+                                 </li>
+                                 <li>
+                                    <i>
+                                       <img src="{% static "appointment/assets/img/icon/calling.svg" %}" alt="">
+                                    </i>
+                                    <a href="tel:0123456789">+2839 (3748) 2651</a>
+                                 </li>
+                                 <li>
+                                    <i>
+                                       <img src="{% static "appointment/assets/img/icon/message.svg" %}" alt="">
+                                    </i>
+                                    <a href="http://template.wphix.com/cdn-cgi/l/email-protection#592a2c2929362b2d193e34383035773a3634"><span class="__cf_email__" data-cfemail="c3b0b6b3b3acb1b783a4aea2aaafeda0acae">[email&#160;protected]</span></a>
+                                 </li>
+                              </ul>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-lg-3 col-md-6">
+                        <div class="footer-widget footer-3-col-2 mb-70 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".4s">
+                           <span class="footer-title">Services</span>
+                           <div class="footer-link">
+                              <ul>
+                                 <li><a href="#">Breast Implant Safety</a></li>
+                                 <li><a href="#">Surgery Preparation</a></li>
+                                 <li><a href="#">Breast Implants</a></li>
+                                 <li><a href="#">Lips Surgery</a></li>
+                                 <li><a href="#">Non Surgical</a></li>
+                              </ul>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-lg-2 col-md-6">
+                        <div class="footer-widget footer-3-col-3 mb-70 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".6s">
+                           <span class="footer-title">Useful Links</span>
+                           <div class="footer-link">
+                              <ul>
+                                 <li><a href="{% url "about" %}">Know About Us</a></li>
+                                 <li><a href="{% url "appointment" %}">Free Consultation</a></li>
+                                 <li><a href="{% url "contact" %}">Help & Support</a></li>
+                              </ul>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-lg-4 col-md-6">
+                        <div class="footer-widget footer-3-col-4 mb-70 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".8s">
+                           <span class="footer-title">Latest From Blogs</span>
+                           <div class="footer-post">
+                              <div class="footer-post-3-item d-flex align-items-center mb-35">
+                                 <div class="footer-post-3-thumb">
+                                    <a href="blog-details.html">
+                                       <img src="{% static "appointment/assets/img/footer/footer-3-post-1.jpg" %}" alt="">
+                                    </a>
+                                 </div>
+                                 <div class="footer-post-3-content">
+                                    <span class="footer-post-3-title">
+                                       <a href="blog-details.html">Recapture The Beauty of <br> Self-Confidence</a>
+                                    </span>
+                                    <span class="footer-post-3-date">
+                                       <i>
+                                          <svg width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                             <path d="M1.31934 7.05334H14.6873" stroke="#6A5952" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                             <path d="M11.3312 9.98205H11.3382" stroke="#6A5952" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                             <path d="M8.00311 9.98205H8.01005" stroke="#6A5952" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                             <path d="M4.66815 9.98205H4.67509" stroke="#6A5952" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                             <path d="M11.3312 12.8971H11.3382" stroke="#6A5952" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                             <path d="M8.00311 12.8971H8.01005" stroke="#6A5952" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                             <path d="M4.66815 12.8971H4.67509" stroke="#6A5952" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                             <path d="M11.0329 1.5V3.96809" stroke="#6A5952" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                             <path d="M4.97435 1.5V3.96809" stroke="#6A5952" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                             <path fill-rule="evenodd" clip-rule="evenodd" d="M11.1787 2.68457H4.82822C2.6257 2.68457 1.25 3.91152 1.25 6.16684V12.9541C1.25 15.2449 2.6257 16.5002 4.82822 16.5002H11.1718C13.3812 16.5002 14.75 15.2661 14.75 13.0108V6.16684C14.7569 3.91152 13.3882 2.68457 11.1787 2.68457Z" stroke="#6A5952" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                          </svg>
+                                       </i>
+                                       22 Feb, 2023
+                                    </span>
+                                 </div>
+                              </div>
+                              <div class="footer-post-3-item d-flex align-items-center mb-35">
+                                 <div class="footer-post-3-thumb">
+                                    <a href="blog-details.html">
+                                       <img src="{% static "appointment/assets/img/footer/footer-3-post-2.jpg" %}" alt="">
+                                    </a>
+                                 </div>
+                                 <div class="footer-post-3-content">
+                                    <span class="footer-post-3-title">
+                                       <a href="blog-details.html">When You Feel Good, We <br> Feel Good</a>
+                                    </span>
+                                    <span class="footer-post-3-date">
+                                       <i>
+                                          <svg width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                             <path d="M1.31934 7.05334H14.6873" stroke="#6A5952" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                             <path d="M11.3312 9.98205H11.3382" stroke="#6A5952" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                             <path d="M8.00311 9.98205H8.01005" stroke="#6A5952" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                             <path d="M4.66815 9.98205H4.67509" stroke="#6A5952" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                             <path d="M11.3312 12.8971H11.3382" stroke="#6A5952" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                             <path d="M8.00311 12.8971H8.01005" stroke="#6A5952" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                             <path d="M4.66815 12.8971H4.67509" stroke="#6A5952" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                             <path d="M11.0329 1.5V3.96809" stroke="#6A5952" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                             <path d="M4.97435 1.5V3.96809" stroke="#6A5952" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                             <path fill-rule="evenodd" clip-rule="evenodd" d="M11.1787 2.68457H4.82822C2.6257 2.68457 1.25 3.91152 1.25 6.16684V12.9541C1.25 15.2449 2.6257 16.5002 4.82822 16.5002H11.1718C13.3812 16.5002 14.75 15.2661 14.75 13.0108V6.16684C14.7569 3.91152 13.3882 2.68457 11.1787 2.68457Z" stroke="#6A5952" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                          </svg>
+                                       </i>
+                                       22 Feb, 2023
+                                    </span>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="footer-bottom-3 theme-bg-6">
+               <div class="container">
+                  <div class="row">
+                     <div class="col-lg-12">
+                        <div class="footer-copyright text-center">
+                           <span>Copyright © 2024 Miss Amani Aesthetics | Designed by Abrar Shahriar</span>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </footer>
+      <!-- footer-area-end -->
+
+
+
+      <!-- JS here -->
+      <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="assets/js/vendor/jquery.js"></script>
+      <script src="{% static "appointment/assets/js/vendor/waypoints.js" %}"></script>
+      <script src="{% static "appointment/assets/js/bootstrap-bundle.js" %}"></script>
+      <script src="{% static "appointment/assets/js/meanmenu.js" %}"></script>
+      <script src="{% static "appointment/assets/js/swiper-bundle.js" %}"></script>
+      <script src="{% static "appointment/assets/js/slick.js" %}"></script>
+      <script src="{% static "appointment/assets/js/nouislider.js" %}"></script>
+      <script src="{% static "appointment/assets/js/magnific-popup.js" %}"></script>
+      <script src="{% static "appointment/assets/js/parallax.js" %}"></script>
+      <script src="{% static "appointment/assets/js/nice-select.js" %}"></script>
+      <script src="{% static "appointment/assets/js/counterup.js" %}"></script>
+      <script src="{% static "appointment/assets/js/wow.js" %}"></script>
+      <script src="{% static "appointment/assets/js/isotope-pkgd.js" %}"></script>
+      <script src="{% static "appointment/assets/js/imagesloaded-pkgd.js" %}"></script>
+      <script src="{% static "appointment/assets/js/odometer.min.js" %}"></script>
+      <script src="{% static "appointment/assets/js/jquery.appear.js" %}"></script>
+      <script src="{% static "appointment/assets/js/splide.js" %}"></script>
+      <script src="{% static "appointment/assets/js/pignose.calendar.full.min.js" %}"></script>
+      <script src="{% static "appointment/assets/js/ajax-form.js" %}"></script>
+      <script src="{% static "appointment/assets/js/main.js" %}"></script>
+   </body>
+
+<!-- Mirrored from template.wphix.com/vamary-prv/vamary/index-3.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 15 Jun 2024 08:04:02 GMT -->
+</html>

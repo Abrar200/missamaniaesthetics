@@ -1,0 +1,32 @@
+{% extends "appointment/base.html" %}
+
+{% block content %}
+<section class="appointment-success py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <h1 class="text-center mb-4">Appointment Booked!</h1>
+                        <p class="lead text-center mb-4">Thank you for booking an appointment with us. We've sent a confirmation email to your inbox.</p>
+                        <hr>
+                        <h4>Appointment Details:</h4>
+                        <ul>
+                            <li><strong>Name:</strong> {{ appointment.name }}</li>
+                            <li><strong>Phone:</strong> {{ appointment.phone }}</li>
+                            <li><strong>Email:</strong> {{ appointment.email }}</li>
+                            <li><strong>Date:</strong> {{ appointment.date }}</li>
+                            <li><strong>Timeslot:</strong> {{ appointment.timeslot.slot_text }}</li>
+                        </ul>
+                        <hr>
+                        <p class="text-center">If you need to make any changes or have any questions, please don't hesitate to contact us.</p>
+                        <div class="text-center">
+                            <a href="{% url 'home' %}" class="btn btn-primary">Back to Home</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

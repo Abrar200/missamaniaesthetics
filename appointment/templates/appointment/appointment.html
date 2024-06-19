@@ -1,0 +1,128 @@
+{% extends "appointment/base.html" %}
+
+{% load static %}
+
+
+{% block content %}
+
+<main>
+    <!-- breadcrumb-area-start -->
+    <section class="breadcrumb-area tpbreadcrumb-overlay" data-background="/static/appointment/assets/img/breadcrumb/breadcrumb-bg-2.jpg" style="background-image: url('/static/appointment/assets/img/breadcrumb/breadcrumb-bg-2.jpg');">
+       <div class="container">
+          <div class="row align-items-center">
+             <div class="col-12">
+                <div class="tpbreadcrumb text-center">
+                   <h2 class="tpbreadcrumb-title">Appointment</h2>
+                   <p>At vero eos et accusamus et iusto odio dignissimos <br> ducimus qui blan ditisede voluptatum.</p>
+                </div>
+             </div>
+          </div>
+       </div>
+    </section>
+    <!-- breadcrumb-area-end -->
+
+    <!-- appointment-area-start -->
+    <section class="form-area pt-135 pb-65">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-6 col-lg-5">
+                    <div class="schedules mb-60">
+                        <div class="tpsection">
+                            <h2 class="tpsection-title mb-35">Weekly Schedule</h2>
+                        </div>
+                        <div class="schedules-list">
+                            <span>Satarday --------------------------------8am - 5pm</span>
+                            <span>Sunday ---------------------------------8am - 5pm</span>
+                            <span>Monday -------------------------------- 8am - 5pm</span>
+                            <span>Tuesday --------------------------------8am - 5pm</span>
+                            <span>Wednesday -----------------------------8am - 5pm</span>
+                            <span>Thurshday ------------------------------8am - 5pm</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-7">
+                    <div class="appoinment-2 appoinment-3 mb-50">
+                        <div class="appoinment-2">
+                            {% if error %}
+                                <div class="alert alert-danger">{{ error|safe }}</div>
+                            {% endif %}
+                            <form method="post" action="{% url 'appointment' %}">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="appoinment-form-input mb-30">
+                                            <input type="text" name="name" placeholder="Your Name" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="appoinment-form-input mb-30">
+                                            <input type="text" name="phone" placeholder="Phone" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="appoinment-form-input mb-30">
+                                            <input type="email" name="email" placeholder="Email Address" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="appoinment-form-input">
+                                            <input type="date" class="doctor-name wide mb-30" name="date" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="appoinment-form-input">
+                                            <select class="doctor-name wide mb-30" name="timeslot" required>
+                                                <option value="">Select TimeSlot</option>
+                                                {% for timeslot in timeslots %}
+                                                    <option value="{{ timeslot.id }}">{{ timeslot.slot_text }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="appoinment-form-input mb-30">
+                                            <h4>Waiver Form</h4>
+                                            <p><pre>{{ waiver_content }}</pre></p>
+                                            <div class="form-group">
+                                                <label for="waiver_signature">Type your name to sign:</label>
+                                                <input type="text" class="form-control" id="waiver_signature" name="waiver_signature" value="{{ form_data.waiver_signature }}" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="appoinment-form-submit mb-30">
+                                            <button type="submit" class="tp-btn">Get Appointment</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- appointment-area-end -->
+
+    <!-- cta-area-start -->
+    <section class="cta-area cta-6-bg pt-100 pb-100" data-background="/static/appointment/assets/img/banner/cta-6-bg-1.jpg" style="background-image: url('/static/appointment/assets/img/banner/cta-6-bg-1.jpg');">
+       <div class="container">
+          <div class="row">
+             <div class="col-lg-12">
+                <div class="cta-6-content text-center">
+                   <div class="whitesection mb-25">
+                      <h2 class="whitesection-title mb-40">Enhance Your Look, <br> Enhance Beauty</h2>
+                   </div>
+                   <div class="cta-6-btn">
+                      <a class="tp-round-btn" href="{% url 'contact' %}">Contact Our Team</a>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+    </section>
+    <!-- cta-area-end -->
+
+</main>
+
+{% endblock content %}

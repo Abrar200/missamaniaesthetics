@@ -1,0 +1,45 @@
+{% extends 'admin/change_list.html' %}
+
+{% load i18n static %}
+
+{% block result_list %}
+    {% if appointments_by_date %}
+        <div class="results">
+            <table id="result_list">
+                <thead>
+                    <tr>
+                        <th scope="col" class="action-checkbox-column">
+                            <div class="text">
+                                <span>{% trans 'Date' %}</span>
+                            </div>
+                        </th>
+                        <th scope="col" class="action-checkbox-column">
+                            <div class="text">
+                                <span>{% trans 'Appointments' %}</span>
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for date, appointments in appointments_by_date %}
+                        <tr class="{% cycle 'row1' 'row2' %}">
+                            <th scope="row">
+                                <div class="text">
+                                    <span>{{ date|date:"jS F Y" }}</span>
+                                    <small>{{ date|date:"l" }}</small>
+                                </div>
+                            </th>
+                            <td>
+                                {% for appointment in appointments %}
+                                    <p>{{ appointment.name }} - {{ appointment.timeslot.start_time|time:"g:i A" }} - {{ appointment.timeslot.end_time|time:"g:i A" }}</p>
+                                {% endfor %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <p>{% trans 'No appointments available.' %}</p>
+    {% endif %}
+{% endblock %}
