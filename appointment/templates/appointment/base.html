@@ -3,7 +3,6 @@
 <!doctype html>
 <html class="no-js" lang="zxx">
    
-<!-- Mirrored from template.wphix.com/vamary-prv/vamary/index-3.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 15 Jun 2024 08:00:32 GMT -->
 <head>
       <meta charset="utf-8">
       <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -60,9 +59,6 @@
                               <ul>
                                  <li><a href="tel:0123456"><i class="fa-light fa-phone"></i> Need Help? Call Us: +8880 2395 1928</a></li>
                                  <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
-                                 <li><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
-                                 <li><a href="#"><i class="fa-brands fa-google-plus-g"></i></a></li>
-                                 <li><a href="#"><i class="fa-brands fa-linkedin-in"></i></a></li>
                               </ul>
                            </div>
                         </div>
@@ -106,7 +102,7 @@
                                  </div>
                               </div>
                               <div class="offcanvas-btn d-xl-none ml-20">
-                                 <button class="offcanvas-open-btn"><i class="fa-solid fa-bars"></i></button>
+                                 <button id="offcanvasOpenBtn" class="offcanvas-open-btn"><i class="fa-solid fa-bars"></i></button>
                               </div>
                            </div>
                         </div>
@@ -119,34 +115,46 @@
       <!-- header area end -->
 
       <!-- offcanvas area start -->
-      <div class="offcanvas__area">
+      
+      <div id="offcanvasArea" class="offcanvas__area">
          <div class="offcanvas__wrapper">
             <div class="offcanvas__close">
                <button class="offcanvas__close-btn offcanvas-close-btn">
                   <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                     <path d="M11 1L1 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                        stroke-linejoin="round" />
-                     <path d="M1 1L11 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                        stroke-linejoin="round" />
+                     <path d="M11 1L1 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                     <path d="M1 1L11 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                   </svg>
                </button>
             </div>
             <div class="offcanvas__content">
                <div class="offcanvas__top mb-70 d-flex justify-content-between align-items-center">
                   <div class="offcanvas__logo logo">
-                     <a href="index.html">
-                        <img src="{% static "appointment/assets/img/logo/logo.png" %}" alt="logo">
+                     <a href="{% url "home" %}">
+                        <img src="{% static "appointment/assets/img/banner/logo2.png" %}" alt="logo">
                      </a>
                   </div>
                </div>
-               <div class="tp-main-menu-mobile"></div>
+               <div class="tp-main-menu-mobile">
+                  <nav id="mobile-menu" class="tp-main-menu-content">
+                     <ul>
+                        <li class="has-dropdown">
+                           <a href="{% url "home" %}">Home</a>
+                        </li>
+                        <li>
+                           <a href="{% url "about" %}">About</a>
+                        </li>
+                        <li>
+                           <a href="{% url "contact" %}">Contact</a>
+                        </li>
+                     </ul>
+                  </nav>
+               </div>
                <div class="offcanvas__btn">
-                  <a href="contact.html" class="tp-btn-offcanvas">Getting Started <i
-                        class="fa-regular fa-chevron-right"></i></a>
+                  <a href="{% url "appointment" %}" class="tp-btn-offcanvas">Get An Appointment <i class="fa-regular fa-chevron-right"></i></a>
                </div>
                <div class="side-info-contact">
                   <span>we are here</span>
-                  <p>1489 Langley Ave <br> Grand Forks Afb, North.</p>
+                  <p>1489 Langley Ave <br> Adelaide, South Australia.</p>
                </div>
                <div class="side-info-social">
                   <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
@@ -157,7 +165,30 @@
             </div>
          </div>
       </div>
-      <div class="body-overlay"></div>
+      <div id="bodyOverlay" class="body-overlay"></div>
+
+      <script>
+         document.addEventListener('DOMContentLoaded', function() {
+           const offcanvasOpenBtn = document.getElementById('offcanvasOpenBtn');
+           const offcanvasArea = document.getElementById('offcanvasArea');
+           const bodyOverlay = document.getElementById('bodyOverlay');
+           const offcanvasCloseBtn = document.querySelector('.offcanvas-close-btn');
+       
+           function openOffcanvas() {
+             offcanvasArea.classList.add('offcanvas-opened');
+             bodyOverlay.classList.add('opened');
+           }
+       
+           function closeOffcanvas() {
+             offcanvasArea.classList.remove('offcanvas-opened');
+             bodyOverlay.classList.remove('opened');
+           }
+       
+           offcanvasOpenBtn.addEventListener('click', openOffcanvas);
+           offcanvasCloseBtn.addEventListener('click', closeOffcanvas);
+           bodyOverlay.addEventListener('click', closeOffcanvas);
+         });
+       </script>
       <!-- offcanvas area end -->
 
       {% block content %}
@@ -177,7 +208,7 @@
                            </div>
                            <div class="footer-content">
                               <div class="footer-info">
-                                 <p>Lorem ipsum dolor sit amet for consectetur adipiscing elit.</p>
+                                 <p>Sculpting Confidence, Enhancing Lives</p>
                               </div>
                               <ul class="footer-info-list">
                                  <li>
@@ -196,7 +227,7 @@
                                     <i>
                                        <img src="{% static "appointment/assets/img/icon/message.svg" %}" alt="">
                                     </i>
-                                    <a href="http://template.wphix.com/cdn-cgi/l/email-protection#592a2c2929362b2d193e34383035773a3634"><span class="__cf_email__" data-cfemail="c3b0b6b3b3acb1b783a4aea2aaafeda0acae">[email&#160;protected]</span></a>
+                                    <a href="#"><span class="__cf_email__" data-cfemail="c3b0b6b3b3acb1b783a4aea2aaafeda0acae">missamaniaesthetics@outlook.com</span></a>
                                  </li>
                               </ul>
                            </div>
@@ -228,71 +259,6 @@
                            </div>
                         </div>
                      </div>
-                     <div class="col-lg-4 col-md-6">
-                        <div class="footer-widget footer-3-col-4 mb-70 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".8s">
-                           <span class="footer-title">Latest From Blogs</span>
-                           <div class="footer-post">
-                              <div class="footer-post-3-item d-flex align-items-center mb-35">
-                                 <div class="footer-post-3-thumb">
-                                    <a href="blog-details.html">
-                                       <img src="{% static "appointment/assets/img/footer/footer-3-post-1.jpg" %}" alt="">
-                                    </a>
-                                 </div>
-                                 <div class="footer-post-3-content">
-                                    <span class="footer-post-3-title">
-                                       <a href="blog-details.html">Recapture The Beauty of <br> Self-Confidence</a>
-                                    </span>
-                                    <span class="footer-post-3-date">
-                                       <i>
-                                          <svg width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                             <path d="M1.31934 7.05334H14.6873" stroke="#6A5952" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                             <path d="M11.3312 9.98205H11.3382" stroke="#6A5952" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                             <path d="M8.00311 9.98205H8.01005" stroke="#6A5952" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                             <path d="M4.66815 9.98205H4.67509" stroke="#6A5952" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                             <path d="M11.3312 12.8971H11.3382" stroke="#6A5952" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                             <path d="M8.00311 12.8971H8.01005" stroke="#6A5952" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                             <path d="M4.66815 12.8971H4.67509" stroke="#6A5952" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                             <path d="M11.0329 1.5V3.96809" stroke="#6A5952" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                             <path d="M4.97435 1.5V3.96809" stroke="#6A5952" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                             <path fill-rule="evenodd" clip-rule="evenodd" d="M11.1787 2.68457H4.82822C2.6257 2.68457 1.25 3.91152 1.25 6.16684V12.9541C1.25 15.2449 2.6257 16.5002 4.82822 16.5002H11.1718C13.3812 16.5002 14.75 15.2661 14.75 13.0108V6.16684C14.7569 3.91152 13.3882 2.68457 11.1787 2.68457Z" stroke="#6A5952" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                          </svg>
-                                       </i>
-                                       22 Feb, 2023
-                                    </span>
-                                 </div>
-                              </div>
-                              <div class="footer-post-3-item d-flex align-items-center mb-35">
-                                 <div class="footer-post-3-thumb">
-                                    <a href="blog-details.html">
-                                       <img src="{% static "appointment/assets/img/footer/footer-3-post-2.jpg" %}" alt="">
-                                    </a>
-                                 </div>
-                                 <div class="footer-post-3-content">
-                                    <span class="footer-post-3-title">
-                                       <a href="blog-details.html">When You Feel Good, We <br> Feel Good</a>
-                                    </span>
-                                    <span class="footer-post-3-date">
-                                       <i>
-                                          <svg width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                             <path d="M1.31934 7.05334H14.6873" stroke="#6A5952" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                             <path d="M11.3312 9.98205H11.3382" stroke="#6A5952" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                             <path d="M8.00311 9.98205H8.01005" stroke="#6A5952" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                             <path d="M4.66815 9.98205H4.67509" stroke="#6A5952" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                             <path d="M11.3312 12.8971H11.3382" stroke="#6A5952" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                             <path d="M8.00311 12.8971H8.01005" stroke="#6A5952" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                             <path d="M4.66815 12.8971H4.67509" stroke="#6A5952" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                             <path d="M11.0329 1.5V3.96809" stroke="#6A5952" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                             <path d="M4.97435 1.5V3.96809" stroke="#6A5952" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                             <path fill-rule="evenodd" clip-rule="evenodd" d="M11.1787 2.68457H4.82822C2.6257 2.68457 1.25 3.91152 1.25 6.16684V12.9541C1.25 15.2449 2.6257 16.5002 4.82822 16.5002H11.1718C13.3812 16.5002 14.75 15.2661 14.75 13.0108V6.16684C14.7569 3.91152 13.3882 2.68457 11.1787 2.68457Z" stroke="#6A5952" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                          </svg>
-                                       </i>
-                                       22 Feb, 2023
-                                    </span>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
                   </div>
                </div>
             </div>
@@ -301,7 +267,7 @@
                   <div class="row">
                      <div class="col-lg-12">
                         <div class="footer-copyright text-center">
-                           <span>Copyright © 2024 Miss Amani Aesthetics | Designed by Abrar Shahriar</span>
+                           <span>Copyright © 2024 Miss Amani Aesthetics | Designed by Nexa Digital</span>
                         </div>
                      </div>
                   </div>
@@ -336,5 +302,4 @@
       <script src="{% static "appointment/assets/js/main.js" %}"></script>
    </body>
 
-<!-- Mirrored from template.wphix.com/vamary-prv/vamary/index-3.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 15 Jun 2024 08:04:02 GMT -->
 </html>

@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.shortcuts import render
-from .models import Appointment, Timeslot, Waiver
+from .models import Appointment, Timeslot, Waiver, Service
 
 class AppointmentAdmin(admin.ModelAdmin):
     change_list_template = 'admin/appointments/appointment/change_list.html'
@@ -25,3 +25,4 @@ class AppointmentAdmin(admin.ModelAdmin):
 admin.site.register(Appointment, AppointmentAdmin)
 admin.site.register(Timeslot)
 admin.site.register(Waiver)
+admin.site.register(Service)

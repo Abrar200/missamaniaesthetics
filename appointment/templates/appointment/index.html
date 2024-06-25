@@ -34,7 +34,7 @@
                       <span>25k+ Cases Done</span>
                    </div>
                    <p>
-                      The betters you looking the more you. We’ll make this is mountains beauty.
+                    Enhance Your Natural Beauty. <br> We'll Help You Feel Confident in Your Own Skin.
                    </p>
                 </div>
              </div>
@@ -64,137 +64,40 @@
           <div class="row justify-content-center">
              <div class="col-lg-10">
                 <div class="tpsection text-center mb-65">
-                   <h2 class="tpsection-title">Services We Provided</h2>
+                   <h2 class="tpsection-title">Services We Provide</h2>
                 </div>
              </div>
           </div>
           <div class="row">
-             <div class="col-lg-4 col-md-6">
-                <div class="services-3 p-relative theme-bg-6 text-center mb-30">
-                   <div class="services-3-thumb p-relative">
-                      <div class="services-3-mask">
-                         <img src="{% static "appointment/assets/img/services/services-3/services-3-thumb-1.jpg" %}" alt="">
-                      </div>
-                      <div class="services-3-shape">
-                         <span>
-                            <svg width="410" height="257" viewBox="0 0 410 257" fill="none" xmlns="http://www.w3.org/2000/svg">
-                               <path d="M0 0V187C60.1985 228.028 128.519 257 205 257C281.481 257 349.814 228.028 410 187V0H0Z" fill="currentColor"/>
-                            </svg>
-                         </span>
-                      </div>
-                   </div>
-                   <div class="services-3-icon">
-                      <span>
-                         <svg width="48" height="42" viewBox="0 0 48 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M43.5885 6.84375H18.6562V2.25C18.6562 1.47337 18.0266 0.84375 17.25 0.84375C7.74091 0.84375 -0.0262769 8.57944 6.68147e-05 18.0486C0.0265043 27.519 7.89401 35.1562 17.4024 35.1562H20.25C20.3016 35.1562 20.3437 35.1982 20.3437 35.25V39.75C20.3437 40.5266 20.9733 41.1562 21.75 41.1562H27.75C28.5266 41.1562 29.1562 40.5266 29.1562 39.75V35.25C29.1562 31.512 26.8413 28.305 23.5698 26.986C23.9279 26.6551 23.751 26.83 28.2801 21.889C29.2896 20.7878 30.7254 20.1562 32.2193 20.1562H39.8437C44.3411 20.1562 48 16.4974 48 12V11.2528C48.0048 8.82422 46.0323 6.84375 43.5885 6.84375ZM20.25 29.1562C23.6101 29.1562 26.3437 31.8899 26.3437 35.25V38.3438H23.1562V35.25C23.1562 33.6474 21.8524 32.3438 20.25 32.3438H17.4024C9.37947 32.3438 2.8345 25.9275 2.81257 18.0407C2.79166 10.5272 8.62882 4.42003 15.8437 3.72384V6.93094C10.3699 7.61484 6.07385 12.297 6.09372 18.0394C6.115 24.1693 11.1672 29.1562 17.3558 29.1562H20.25ZM45.1875 12C45.1875 14.9466 42.7903 17.3438 39.8437 17.3438H32.2193C29.9392 17.3438 27.7477 18.3077 26.2069 19.9886L21.9698 24.611C20.9603 25.7122 19.5245 26.3438 18.0306 26.3438H17.3558C15.3917 26.3438 13.5801 25.6762 12.1423 24.5589C12.6258 23.6152 13.6512 21.8647 15.3547 20.1023C18.6878 16.6545 22.8581 14.9062 27.75 14.9062H30C30.7766 14.9062 31.4062 14.2766 31.4062 13.5C31.4062 12.7234 30.7766 12.0938 30 12.0938H27.75C20.6707 12.0938 16.0023 15.3859 13.3326 18.1476C11.8539 19.6772 10.8165 21.2062 10.1493 22.3492C9.36607 21.0894 8.91166 19.6104 8.90622 18.0296C8.89029 13.4068 12.6258 9.65625 17.25 9.65625H43.5884C44.4648 9.65625 45.1892 10.3633 45.1875 11.25V12Z" fill="currentColor"/>
-                         </svg>
-                      </span>
-                   </div>
-                   <div class="services-3-content">
-                      <h4 class="services-3-title"><a href="service-details.html">Ear Reshaping</a></h4>
-                      <p>Recapture beauty self-confidence to incredible possibilities youthful skin for life impression.</p>
-                   </div>
+            {% for service in services %}
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card service-card">
+                        <!-- Banner Image -->
+                        <a href="{% url 'service_detail' service.slug %}">
+                        <img style="height: 250px" src="{{ service.banner_image.url }}" class="card-img-top" alt="{{ service.title }}"></a>
+                        <div class="card-body">
+                            <!-- Title -->
+                            <a href="{% url 'service_detail' service.slug %}">
+                            <h5 class="card-title">{{ service.title }}</h5></a>
+                            <!-- Short Description -->
+                            <p class="card-text">
+                                {{ service.description|truncatewords:20 }}
+                                <span class="collapse" id="fullDescription{{ forloop.counter }}">
+                                    {{ service.description|slice:"20:" }}
+                                </span>
+                            </p>
+                            <!-- See More Link -->
+                            <a class="btn btn-link p-0" data-toggle="collapse" href="{% url 'service_detail' service.slug %}" role="button" aria-expanded="false" aria-controls="fullDescription{{ forloop.counter }}">
+                                See More
+                            </a>
+                        </div>
+                    </div>
                 </div>
-             </div>
-             <div class="col-lg-4 col-md-6">
-                <div class="services-3 theme-bg-6 p-relative text-center mb-30">
-                   <div class="services-3-thumb p-relative">
-                      <div class="services-3-mask">
-                         <img src="{% static "appointment/assets/img/services/services-3/services-3-thumb-2.jpg" %}" alt="">
-                      </div>
-                      <div class="services-3-shape">
-                         <span>
-                            <svg width="410" height="257" viewBox="0 0 410 257" fill="none" xmlns="http://www.w3.org/2000/svg">
-                               <path d="M0 0V187C60.1985 228.028 128.519 257 205 257C281.481 257 349.814 228.028 410 187V0H0Z" fill="currentColor"/>
-                            </svg>
-                         </span>
-                      </div>
-                   </div>
-                   <div class="services-3-icon">
-                      <span>
-                         <svg width="48" height="25" viewBox="0 0 48 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M47.0241 9.86112C46.9468 9.35712 46.6093 8.93232 46.1351 8.74224C43.0933 7.52592 41.1935 5.78256 39.357 4.0968C37.0607 1.99008 34.8921 0 31.2009 0C29.325 0 27.9849 0.89376 26.8021 1.68192C25.8373 2.32464 25.005 2.88 24.0009 2.88C22.9967 2.88 22.1644 2.32464 21.1996 1.68192C20.0169 0.89376 18.6767 0 16.8009 0C13.1097 0 10.941 1.99008 8.6447 4.09728C6.80822 5.78352 4.90838 7.5264 1.86662 8.74272C1.39286 8.9328 1.05542 9.35712 0.977662 9.8616C0.900382 10.3651 1.0943 10.872 1.48934 11.1946L14.5434 21.8755C16.5954 23.5546 19.186 24.48 21.8394 24.48H26.1623C28.8157 24.48 31.4063 23.5546 33.4564 21.8755L46.5119 11.1946C46.9074 10.8715 47.1013 10.3646 47.0241 9.86112ZM10.5921 6.21936C12.7045 4.28064 14.2305 2.88 16.8009 2.88C17.805 2.88 18.6373 3.43536 19.6021 4.07808C20.7849 4.86624 22.125 5.76 24.0009 5.76C25.8767 5.76 27.2169 4.86624 28.3996 4.07808C29.3644 3.43536 30.1967 2.88 31.2009 2.88C33.7713 2.88 35.2972 4.28064 37.4097 6.21936C38.266 7.00512 39.1905 7.83408 40.2421 8.64H32.6409C30.9589 8.64 29.7172 9.36 28.5148 10.057C27.2169 10.8091 25.9919 11.52 24.0009 11.52C22.0098 11.52 20.7849 10.8091 19.4869 10.057C18.2845 9.36 17.0428 8.64 15.3609 8.64H7.76006C8.81174 7.83408 9.73622 7.00512 10.5921 6.21936ZM31.6324 19.6469C30.094 20.9069 28.1519 21.6 26.1623 21.6H21.8394C19.8493 21.6 17.9077 20.9069 16.3679 19.6469L6.43526 11.52H15.3609C16.2681 11.52 17.0509 11.9736 18.0412 12.5482C19.4644 13.3733 21.2346 14.4 24.0009 14.4C26.7671 14.4 28.5373 13.3733 29.9605 12.5482C30.9508 11.9736 31.7337 11.52 32.6409 11.52H41.5665L31.6324 19.6469Z" fill="currentColor"/>
-                            </svg>
-                      </span>
-                   </div>
-                   <div class="services-3-content">
-                      <h4 class="services-3-title"><a href="service-details.html">Lip Preparation</a></h4>
-                      <p>Recapture beauty self-confidence to incredible possibilities youthful skin for life impression.</p>
-                   </div>
-                </div>
-             </div>
-             <div class="col-lg-4 col-md-6">
-                <div class="services-3 theme-bg-6 p-relative text-center mb-30">
-                   <div class="services-3-thumb p-relative">
-                      <div class="services-3-mask">
-                         <img src="{% static "appointment/assets/img/services/services-3/services-3-thumb-1.jpg" %}" alt="">
-                      </div>
-                      <div class="services-3-shape">
-                         <span>
-                            <svg width="410" height="257" viewBox="0 0 410 257" fill="none" xmlns="http://www.w3.org/2000/svg">
-                               <path d="M0 0V187C60.1985 228.028 128.519 257 205 257C281.481 257 349.814 228.028 410 187V0H0Z" fill="currentColor"/>
-                            </svg>
-                         </span>
-                      </div>
-                   </div>
-                   <div class="services-3-icon">
-                      <span>
-                         <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M24.0009 21.119C22.6877 21.119 21.4526 20.6073 20.5248 19.679L12.9029 12.0571C11.7019 10.8561 11.0409 9.2601 11.0409 7.56282V7.31514C11.0409 5.61786 11.7019 4.02186 12.9029 2.8209C14.1038 1.61994 15.6998 0.958984 17.3971 0.958984H17.6448C19.3421 0.958984 20.9381 1.61994 22.139 2.8209L24.0009 4.68282L25.8629 2.8209C27.0638 1.61994 28.6598 0.958984 30.3571 0.958984H30.6048C32.3021 0.958984 33.8981 1.61994 35.099 2.8209C36.3 4.02186 36.9609 5.61786 36.9609 7.31514V7.56282C36.9609 9.2601 36.3 10.8561 35.099 12.0571L27.4771 19.679C26.5493 20.6073 25.3142 21.119 24.0009 21.119ZM17.3971 3.83898C16.4688 3.83898 15.5957 4.20042 14.939 4.85706C14.2824 5.5137 13.9209 6.3873 13.9209 7.31514V7.56282C13.9209 8.49114 14.2824 9.36426 14.939 10.0209L22.5609 17.6428C23.3313 18.4108 24.6705 18.4108 25.4409 17.6428L33.0629 10.0209C33.7195 9.36426 34.0809 8.49066 34.0809 7.56282V7.31514C34.0809 6.38682 33.7195 5.5137 33.0629 4.85706C32.4062 4.20042 31.5326 3.83898 30.6048 3.83898H30.3571C29.4288 3.83898 28.5557 4.20042 27.899 4.85706L25.019 7.73706C24.4565 8.29962 23.5454 8.29962 22.9829 7.73706L20.1029 4.85706C19.4462 4.20042 18.5726 3.83898 17.6448 3.83898H17.3971ZM38.4009 47.039H28.3209C27.5251 47.039 26.8809 46.3948 26.8809 45.599V32.1455C26.8809 30.2217 27.6307 28.4135 28.9905 27.0537L33.6086 22.4356C34.8461 21.1967 36.8587 20.8257 38.4009 21.419V15.359C38.4009 12.1823 40.9843 9.59898 44.1609 9.59898C45.7488 9.59898 47.0409 10.8911 47.0409 12.479V30.2524C47.0409 32.1763 46.2912 33.9844 44.9313 35.3443L40.2624 40.0132C39.9941 40.282 39.8409 40.6531 39.8409 41.0313V45.599C39.8409 46.3948 39.1968 47.039 38.4009 47.039ZM29.7609 44.159H36.9609V41.0313C36.9609 39.8783 37.4107 38.7926 38.2267 37.9771L42.8957 33.3081C43.7107 32.4926 44.1609 31.4073 44.1609 30.2524V12.479C42.5731 12.479 41.2809 13.7711 41.2809 15.359V25.439C41.2809 25.4601 41.2809 25.4812 41.2795 25.5023C41.2809 25.5388 41.2809 25.5767 41.2809 25.6132C41.2809 26.7974 40.8014 27.9547 39.9648 28.7913L35.099 33.6571C34.5365 34.2196 33.6254 34.2196 33.0629 33.6571C32.5003 33.0945 32.5003 32.1835 33.0629 31.6209L37.9286 26.7551C38.2296 26.4542 38.4009 26.038 38.4009 25.6132C38.4009 24.7233 37.6766 23.999 36.7867 23.999C36.3619 23.999 35.9457 24.1703 35.6448 24.4713L31.0267 29.0894C30.2107 29.9054 29.7609 30.9907 29.7609 32.1455V44.159ZM19.6809 47.039H9.60094C8.8051 47.039 8.16094 46.3948 8.16094 45.599V41.0313C8.16094 40.6531 8.00782 40.2815 7.73902 40.0132L3.07006 35.3443C1.7107 33.9849 0.960938 32.1763 0.960938 30.2524V12.479C0.960938 10.8911 2.2531 9.59898 3.84094 9.59898C7.01758 9.59898 9.60094 12.1823 9.60094 15.359V21.4185C11.1465 20.8252 13.1558 21.1963 14.3933 22.4351L19.0113 27.0532C20.3712 28.4131 21.1209 30.2217 21.1209 32.1455V45.599C21.1209 46.3948 20.4768 47.039 19.6809 47.039ZM11.0409 44.159H18.2409V32.1455C18.2409 30.9911 17.7907 29.9054 16.9752 29.0899L12.3571 24.4718C12.0561 24.1703 11.64 23.999 11.2152 23.999C10.3253 23.999 9.60094 24.7233 9.60094 25.6132C9.60094 26.038 9.7723 26.4542 10.0733 26.7551L14.939 31.6209C15.5016 32.1835 15.5016 33.0945 14.939 33.6571C14.3765 34.2196 13.4654 34.2196 12.9029 33.6571L8.0371 28.7913C7.20046 27.9547 6.72094 26.7974 6.72094 25.6132C6.72094 25.5767 6.72094 25.5388 6.72238 25.5023C6.72094 25.4812 6.72094 25.4601 6.72094 25.439V15.359C6.72094 13.7711 5.42878 12.479 3.84094 12.479V30.2524C3.84094 31.4068 4.2907 32.4926 5.1067 33.3081L9.77566 37.9771C10.5907 38.7926 11.0409 39.8783 11.0409 41.0313V44.159Z" fill="currentColor"/>
-                            </svg>
-                      </span>
-                   </div>
-                   <div class="services-3-content">
-                      <h4 class="services-3-title"><a href="service-details.html">Plastic Surgery</a></h4>
-                      <p>Recapture beauty self-confidence to incredible possibilities youthful skin for life impression.</p>
-                   </div>
-                </div>
-             </div>
+            {% endfor %}
           </div>
        </div>
     </section>
     <!-- servicesa-area-end -->
-
-    <!-- counter-area-start -->
-    <div class="counter-area theme-bg mt-115">
-       <div class="container">
-          <div class="row">
-             <div class="col-lg-3 col-md-6">
-                <div class="counter-item-3 mb-30">
-                   <div class="counter-content">
-                      <i class="count"><span class="odometer" data-count="6823">6823</span></i>
-                       <p>Happy Customers</p>
-                   </div>
-                </div>
-             </div>
-             <div class="col-lg-3 col-md-6">
-                <div class="counter-item-3 mb-30">
-                   <div class="counter-content">
-                      <i class="count"><span class="odometer" data-count="35">35</span></i>
-                       <p>Expert Surgeon</p>
-                   </div>
-               </div>
-             </div>
-             <div class="col-lg-3 col-md-6">
-                <div class="counter-item-3 mb-30">
-                   <div class="counter-content">
-                      <i class="count"><span class="odometer" data-count="4678">4678</span></i>
-                       <p>Successful Cases</p>
-                   </div>
-               </div>
-             </div>
-             <div class="col-lg-3 col-md-6">
-                <div class="counter-item-3 mb-30">
-                   <div class="counter-content">
-                      <i class="count"><span class="odometer" data-count="64">64</span></i>
-                       <p>Branch In World</p>
-                   </div>
-               </div>
-             </div>
-          </div>
-       </div>
-    </div>
-    <!-- counter-area-end -->
 
     <!-- about-area-start -->
     <section class="about-area pt-115 pb-70">
@@ -234,8 +137,8 @@
                          </span>
                       </div>
                       <div class="about-3-list-content">
-                         <h4 class="about-3-list-title">Find Your Problem</h4>
-                         <p>Lorem ipsum amet consectetur adipisicing elit, sedesd do eiusmod tempo</p>
+                         <h4 class="about-3-list-title">Identify Your Concerns</h4>
+                         <p>Every journey begins with understanding. We'll listen to your aesthetic goals and help you pinpoint areas for improvement.</p>
                       </div>
                    </div>
                    <div class="about-3-list-item mb-45">
@@ -247,8 +150,8 @@
                          </span>
                       </div>
                       <div class="about-3-list-content">
-                         <h4 class="about-3-list-title">Make Appointment</h4>
-                         <p>Lorem ipsum amet consectetur adipisicing elit, sedesd do eiusmod tempo</p>
+                         <h4 class="about-3-list-title">Schedule a Consultation</h4>
+                         <p>Meet our expert surgeons for a personalized evaluation. We'll discuss your options and create a tailored treatment plan.</p>
                       </div>
                    </div>
                    <div class="about-3-list-item">
@@ -260,8 +163,8 @@
                          </span>
                       </div>
                       <div class="about-3-list-content">
-                         <h4 class="about-3-list-title">Get Treatment</h4>
-                         <p>Lorem ipsum amet consectetur adipisicing elit, sedesd do eiusmod tempo</p>
+                         <h4 class="about-3-list-title">Achieve Your Transformation</h4>
+                         <p>Experience top-quality care and cutting-edge techniques to help you look and feel your best with long-lasting results.</p>
                       </div>
                    </div>
                 </div>
@@ -302,8 +205,6 @@
                         </a>
                          <div class="team-3-social">
                             <a href="{% url "doctor_detail" %}"><i class="fa-solid fa-paper-plane"></i></a>
-                            <a href="{% url "doctor_detail" %}"><i class="fa-brands fa-pinterest-p"></i></a>
-                            <a href="{% url "doctor_detail" %}"><i class="fa-brands fa-twitter"></i></a>
                          </div>
                       </div>
                       <div class="team-3-content">
@@ -382,48 +283,48 @@
                          <div class="accordion-item">
                            <h2 class="accordion-header" id="headingOne">
                              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                               What Is Secret Youthful skin for life?
+                                What are the risks of plastic surgery?
                              </button>
                            </h2>
                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                              <div class="accordion-body">
-                               <p>Lorem ipsum amet consectetur adipisicing elit, sedesd do eiusmod tempo. Recapture the beauty of self-confidence.</p>
+                               <p>As with any surgery, there are risks. We'll discuss these in detail during your consultation.</p>
                              </div>
                            </div>
                          </div>
                          <div class="accordion-item">
                            <h2 class="accordion-header" id="headingTwo">
                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                               Where the beauty self-confidence?
+                                How long do results typically last?
                              </button>
                            </h2>
                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                              <div class="accordion-body">
-                               <p>Lorem ipsum amet consectetur adipisicing elit, sedesd do eiusmod tempo. Recapture the beauty of self-confidence.</p>
+                               <p>Results vary by procedure and individual. Many surgical results can last for years with proper care.</p>
                              </div>
                            </div>
                          </div>
                          <div class="accordion-item">
                            <h2 class="accordion-header" id="headingThree">
                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                               How better you the more you see?
+                                Do you offer non-surgical treatments?
                              </button>
                            </h2>
                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                              <div class="accordion-body">
-                               <p>Lorem ipsum amet consectetur adipisicing elit, sedesd do eiusmod tempo. Recapture the beauty of self-confidence.</p>
+                               <p>Yes, we provide options like Botox, fillers, and laser treatments for those seeking non-surgical alternatives</p>
                              </div>
                            </div>
                          </div>
                          <div class="accordion-item">
                            <h2 class="accordion-header" id="headingFour">
                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                               What Is Secret Youthful skin for life?
+                                What is the recovery time for most procedures?
                              </button>
                            </h2>
                            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
                              <div class="accordion-body">
-                               <p>Lorem ipsum amet consectetur adipisicing elit, sedesd do eiusmod tempo. Recapture the beauty of self-confidence.</p>
+                               <p>Recovery times vary by procedure. Most patients return to work within 1-2 weeks, with full recovery in 4-6 weeks.</p>
                              </div>
                            </div>
                          </div>
@@ -442,82 +343,6 @@
        </div>
     </section>
     <!-- faq-area-end -->
-
-    <!-- blog-area-start -->
-    <section class="blog-area pt-140 mb-110">
-       <div class="container">
-          <div class="row align-items-center">
-             <div class="col-lg-8">
-                <div class="tpsection mb-65">
-                   <h2 class="tpsection-title">Latest From News</h2>
-                </div>
-             </div>
-             <div class="col-lg-4">
-                <div class="blog-3-all mb-45">
-                   <a class="tp-btn" href="blog-grid.html">Read All Blogs</a>
-                </div>
-             </div>
-          </div>
-          <div class="row">
-             <div class="col-lg-7">
-                <div class="blog-3-item blog-3-big-item p-relative mb-30">
-                   <div class="blog-3-thumb w-img">
-                      <a href="blog-details.html"><img src="{% static "appointment/assets/img/blog/blog-3-big-1.jpg" %}" alt=""></a>
-                   </div>
-                   <div class="blog-3-content">
-                      <h4 class="blog-3-title"><a href="blog-details.html">Practicing The Art of Plastic Surgery For Skin</a></h4>
-                      <p>Practicing The Art of Plastic Surgery For Skin. Our teachers are experts excited to share their wisdom, experience, & trusted.</p>
-                      <div class="blog-3-btn">
-                         <a href="blog-details.html">Read More 
-                            <i>
-                               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                               <path d="M4.16602 10H15.8327" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                               <path d="M10 4.16699L15.8333 10.0003L10 15.8337" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                               </svg>
-                            </i>
-                         </a>
-                      </div>
-                   </div>
-                </div>
-             </div>
-             <div class="col-lg-5">
-                <div class="blog-3-item blog-3-item-border mb-30">
-                   <div class="blog-3-content">
-                      <h4 class="blog-3-title"><a href="blog-details.html">Recapture The Beauty of Self-Confidence</a></h4>
-                      <p>Our teachers are experts excited to share their wisdom, experience, & trusted.</p>
-                      <div class="blog-3-btn">
-                         <a href="blog-details.html">Read More 
-                            <i>
-                               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                               <path d="M4.16602 10H15.8327" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                               <path d="M10 4.16699L15.8333 10.0003L10 15.8337" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                               </svg>
-                            </i>
-                         </a>
-                      </div>
-                   </div>
-                </div>
-                <div class="blog-3-item blog-3-item-border mb-30">
-                   <div class="blog-3-content">
-                      <h4 class="blog-3-title"><a href="blog-details.html">We’ll Make Mountains Out Of Molehills</a></h4>
-                      <p>Our teachers are experts excited to share their wisdom, experience, & trusted.</p>
-                      <div class="blog-3-btn">
-                         <a href="blog-details.html">Read More 
-                            <i>
-                               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                               <path d="M4.16602 10H15.8327" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                               <path d="M10 4.16699L15.8333 10.0003L10 15.8337" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                               </svg>
-                            </i>
-                         </a>
-                      </div>
-                   </div>
-                </div>
-             </div>
-          </div>
-       </div>
-    </section>
-    <!-- blog-area-end -->
 
    
 

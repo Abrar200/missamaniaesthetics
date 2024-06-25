@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.text import slugify
 
 class Timeslot(models.Model):
     start_time = models.TimeField()
@@ -27,3 +28,24 @@ class Appointment(models.Model):
 
     def __str__(self):
         return f"{self.name} - {self.date} - {self.timeslot.slot_text}"
+
+
+
+class Service(models.Model):
+    title = models.CharField(max_length=200)
+    banner_image = models.ImageField(upload_to='service_banners/')
+    description = models.TextField()
+    slug = models.SlugField(unique=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.title
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)
+        super(Service, self).save(*args, **kwargs)
+
+    class Meta:
+        ordering = ['-created_at']

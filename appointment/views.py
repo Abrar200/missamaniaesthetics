@@ -3,17 +3,19 @@ from django.core.mail import send_mail
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.conf import settings
-from .models import Appointment, Timeslot, Waiver
+from .models import Appointment, Timeslot, Waiver, Service
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
 from django.utils import timezone
 from datetime import datetime
 from django.urls import reverse
+from django.shortcuts import render, get_object_or_404
 
 
 def home(request):
-    return render(request, 'appointment/index.html')
+    services = Service.objects.all()
+    return render(request, 'appointment/index.html', {'services': services})
 
 
 def about(request):
@@ -145,5 +147,17 @@ def send_confirmation_email(appointment):
     send_mail(subject, message, sender, recipient_list)
 
 
+
 def doctor_detail(request):
     return render(request, 'appointment/doctor_detail.html')
+
+
+
+def service_detail(request, slug):
+    service = get_object_or_404(Service, slug=slug)
+    services = Service.objects.all()
+    context = {
+        'service': service,
+        'services': services,
+    }
+    return render(request, 'appointment/service_detail.html', context)
