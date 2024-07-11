@@ -64,6 +64,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'appointment.context_processors.base_context',
             ],
         },
     },
@@ -106,7 +107,7 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp-mail.outlook.com'
 EMAIL_HOST_USER = "missamaniaesthetics@outlook.com"
-EMAIL_HOST_PASSWORD = "c1519780100"
+EMAIL_HOST_PASSWORD = "missamani123email."
 DEFAULT_FROM_EMAIL = "missamaniaesthetics@outlook.com"
 
 
@@ -116,7 +117,7 @@ DEFAULT_FROM_EMAIL = "missamaniaesthetics@outlook.com"
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Australia/Adelaide'
 
 USE_I18N = True
 

@@ -30,12 +30,12 @@
                             <h2 class="tpsection-title mb-35">Weekly Schedule</h2>
                         </div>
                         <div class="schedules-list">
-                            <span>Satarday --------------------------------8am - 5pm</span>
-                            <span>Sunday ---------------------------------8am - 5pm</span>
-                            <span>Monday -------------------------------- 8am - 5pm</span>
-                            <span>Tuesday --------------------------------8am - 5pm</span>
-                            <span>Wednesday -----------------------------8am - 5pm</span>
-                            <span>Thurshday ------------------------------8am - 5pm</span>
+                            <span>Satarday --------------------------------9am - 7pm</span>
+                            <span>Sunday ---------------------------------9am - 7pm</span>
+                            <span>Monday --------------------------------9am - 7pm</span>
+                            <span>Tuesday --------------------------------9am - 7pm</span>
+                            <span>Wednesday -----------------------------9am - 7pm</span>
+                            <span>Thursday ------------------------------9am - 7pm</span>
                         </div>
                     </div>
                 </div>
@@ -43,7 +43,7 @@
                     <div class="appoinment-2 appoinment-3 mb-50">
                         <div class="appoinment-2">
                             {% if error %}
-                                <div class="alert alert-danger">{{ error|safe }}</div>
+                                <div class="alert alert-danger">{{ error }}</div>
                             {% endif %}
                             <form method="post" action="{% url 'appointment' %}">
                                 {% csrf_token %}
@@ -65,27 +65,30 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="appoinment-form-input">
-                                            <input type="date" class="doctor-name wide mb-30" name="date" required>
+                                            <select class="doctor-name wide mb-30" name="service" id="service" required>
+                                                <option value="">Select Service</option>
+                                                {% for service in services %}
+                                                    <option value="{{ service.id }}">{{ service.name }}</option>
+                                                {% endfor %}
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="appoinment-form-input">
-                                            <select class="doctor-name wide mb-30" name="timeslot" required>
+                                            <input type="date" class="doctor-name wide mb-30" name="date" id="date" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="appoinment-form-input">
+                                            <select class="doctor-name wide mb-30" name="timeslot" id="timeslot" required>
                                                 <option value="">Select TimeSlot</option>
-                                                {% for timeslot in timeslots %}
-                                                    <option value="{{ timeslot.id }}">{{ timeslot.slot_text }}</option>
-                                                {% endfor %}
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="appoinment-form-input mb-30">
-                                            <h4>Waiver Form</h4>
-                                            <p><pre>{{ waiver_content }}</pre></p>
-                                            <div class="form-group">
-                                                <label for="waiver_signature">Type your name to sign:</label>
-                                                <input type="text" class="form-control" id="waiver_signature" name="waiver_signature" value="{{ form_data.waiver_signature }}" required>
-                                            </div>
+                                            <label>Areas of Concern</label>
+                                            <textarea name="consultation_notes" id="consultation_notes" rows="4" placeholder="Please describe your areas of concern or any information you'd like to discuss during your appointment" class="form-control"></textarea>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
@@ -102,6 +105,210 @@
         </div>
     </section>
     <!-- appointment-area-end -->
+
+
+    <style>
+        #waiver-form-container input[type="text"],
+        #waiver-form-container input[type="email"],
+        #waiver-form-container input[type="number"],
+        #waiver-form-container select,
+        #waiver-form-container textarea {
+            width: 100%;
+            height: 60px;
+            background: #f6f6f6;
+            border: 0;
+            padding: 0 30px;
+            font-size: 15px;
+            color: #999999;
+        }
+    
+        #waiver-form-container textarea {
+            height: 120px;
+            padding: 20px 30px;
+            resize: none;
+        }
+    
+        #waiver-form-container label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+    
+        #waiver-form-container .appoinment-form-input ul {
+            list-style: none;
+            padding: 0;
+        }
+    
+        #waiver-form-container .appoinment-form-input ul li {
+            display: inline-block;
+            margin-right: 15px;
+        }
+    
+        #waiver-form-container .appoinment-form-input ul li label {
+            font-weight: normal;
+        }
+
+
+        /* Custom styles for radio buttons and checkboxes */
+        #waiver-form-container input[type="radio"],
+        #waiver-form-container input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            margin-right: 5px;
+        }
+
+        #waiver-form-container .appoinment-form-input ul {
+            padding-left: 0;
+        }
+
+        #waiver-form-container .appoinment-form-input ul li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        #waiver-form-container .appoinment-form-input ul li label {
+            margin-bottom: 0;
+            margin-left: 5px;
+            font-weight: normal;
+        }
+
+        /* Ensure other form elements maintain their full width */
+        #waiver-form-container input[type="text"],
+        #waiver-form-container input[type="email"],
+        #waiver-form-container input[type="number"],
+        #waiver-form-container select,
+        #waiver-form-container textarea {
+            width: 100%;
+        }
+    </style>
+
+
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const serviceSelect = document.getElementById('service');
+            const dateInput = document.getElementById('date');
+            const timeslotSelect = document.getElementById('timeslot');
+            const waiverFormContainer = document.getElementById('waiver-form-container');
+            const antiWrinkleForm = document.getElementById('anti-wrinkle-form');
+            const fillerForm = document.getElementById('filler-form');
+        
+            serviceSelect.addEventListener('change', updateTimeslotsAndWaiver);
+            dateInput.addEventListener('change', updateTimeslots);
+        
+            function updateTimeslotsAndWaiver() {
+                updateTimeslots();
+                updateWaiver();
+            }
+        
+            function updateTimeslots() {
+                const serviceId = serviceSelect.value;
+                const date = dateInput.value;
+        
+                if (serviceId && date) {
+                    fetch(`/get-available-timeslots/?service_id=${serviceId}&date=${date}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            timeslotSelect.innerHTML = '<option value="">Select TimeSlot</option>';
+                            data.timeslots.forEach(timeslot => {
+                                const option = document.createElement('option');
+                                option.value = timeslot.value;
+                                option.textContent = `${timeslot.start} - ${timeslot.end}`;
+                                timeslotSelect.appendChild(option);
+                            });
+                        });
+                }
+            }
+        
+            function updateWaiver() {
+                const selectedService = serviceSelect.options[serviceSelect.selectedIndex].text;
+                waiverFormContainer.style.display = 'block';
+                if (selectedService === 'Anti-Wrinkles') {
+                    antiWrinkleForm.style.display = 'block';
+                    fillerForm.style.display = 'none';
+                    disableFields(fillerForm);
+                    enableFields(antiWrinkleForm);
+                } else if (selectedService === 'Fillers') {
+                    antiWrinkleForm.style.display = 'none';
+                    fillerForm.style.display = 'block';
+                    disableFields(antiWrinkleForm);
+                    enableFields(fillerForm);
+                } else {
+                    waiverFormContainer.style.display = 'none';
+                    disableFields(antiWrinkleForm);
+                    disableFields(fillerForm);
+                }
+            }
+        
+            function disableFields(form) {
+                const fields = form.querySelectorAll('input, select, textarea');
+                fields.forEach(field => {
+                    field.disabled = true;
+                });
+            }
+        
+            function enableFields(form) {
+                const fields = form.querySelectorAll('input, select, textarea');
+                fields.forEach(field => {
+                    field.disabled = false;
+                });
+            }
+        
+            // Call updateWaiver on page load to set the initial state
+            updateWaiver();
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const serviceSelect = document.getElementById('service');
+            const dateInput = document.getElementById('date');
+            const timeslotSelect = document.getElementById('timeslot');
+            const waiverContent = document.getElementById('waiver-content');
+        
+            const antiWrinkleWaiver = `{{ anti_wrinkle_waiver|escapejs }}`;
+            const fillerWaiver = `{{ filler_waiver|escapejs }}`;
+        
+            serviceSelect.addEventListener('change', updateTimeslotsAndWaiver);
+            dateInput.addEventListener('change', updateTimeslots);
+        
+            function updateTimeslotsAndWaiver() {
+                updateTimeslots();
+                updateWaiver();
+            }
+        
+            function updateTimeslots() {
+                const serviceId = serviceSelect.value;
+                const date = dateInput.value;
+        
+                if (serviceId && date) {
+                    fetch(`/get-available-timeslots/?service_id=${serviceId}&date=${date}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            timeslotSelect.innerHTML = '<option value="">Select TimeSlot</option>';
+                            data.timeslots.forEach(timeslot => {
+                                const option = document.createElement('option');
+                                option.value = timeslot.value;
+                                option.textContent = `${timeslot.start} - ${timeslot.end}`;
+                                timeslotSelect.appendChild(option);
+                            });
+                        });
+                }
+            }
+        
+            function updateWaiver() {
+                const selectedService = serviceSelect.options[serviceSelect.selectedIndex].text;
+                if (selectedService === 'Anti-Wrinkles') {
+                    waiverContent.innerHTML = `<pre>${antiWrinkleWaiver}</pre>`;
+                } else if (selectedService === 'Fillers') {
+                    waiverContent.innerHTML = `<pre>${fillerWaiver}</pre>`;
+                } else {
+                    waiverContent.innerHTML = '';
+                }
+            }
+        });
+    </script>
 
     <!-- cta-area-start -->
     <section class="cta-area cta-6-bg pt-100 pb-100" data-background="/static/appointment/assets/img/banner/cta-6-bg-1.jpg" style="background-image: url('/static/appointment/assets/img/banner/cta-6-bg-1.jpg');">

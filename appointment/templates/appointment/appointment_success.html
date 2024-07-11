@@ -16,7 +16,11 @@
                             <li><strong>Phone:</strong> {{ appointment.phone }}</li>
                             <li><strong>Email:</strong> {{ appointment.email }}</li>
                             <li><strong>Date:</strong> {{ appointment.date }}</li>
-                            <li><strong>Timeslot:</strong> {{ appointment.timeslot.slot_text }}</li>
+                            <li><strong>Service:</strong> {{ appointment.service.name }}</li>
+                            <li><strong>Time:</strong> {{ appointment.start_time|time:"g:i A" }} - {{ appointment.end_time|time:"g:i A" }}</li>
+                            {% if appointment.consultation_notes %}
+                                <li><strong>Consultation Notes:</strong> {{ appointment.consultation_notes }}</li>
+                            {% endif %}
                         </ul>
                         <hr>
                         <p class="text-center">If you need to make any changes or have any questions, please don't hesitate to contact us.</p>

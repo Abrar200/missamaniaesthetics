@@ -20,6 +20,7 @@
                         </th>
                     </tr>
                 </thead>
+                
                 <tbody>
                     {% for date, appointments in appointments_by_date %}
                         <tr class="{% cycle 'row1' 'row2' %}">
@@ -31,7 +32,26 @@
                             </th>
                             <td>
                                 {% for appointment in appointments %}
-                                    <p>{{ appointment.name }} - {{ appointment.timeslot.start_time|time:"g:i A" }} - {{ appointment.timeslot.end_time|time:"g:i A" }}</p>
+                                    <p>
+                                        <a href="{% url 'admin:appointment_change' appointment.id %}">
+                                            <strong>{{ appointment.name }}</strong> - {{ appointment.service.name }} - {{ appointment.start_time|time:"g:i A" }} - {{ appointment.end_time|time:"g:i A" }}
+                                        </a>
+                                        {% if appointment.consultation_notes %}
+                                            <br><small><em>Notes: {{ appointment.consultation_notes|truncatewords:20 }}</em></small>
+                                        {% endif %}
+                                        {% if appointment.waiver %}
+                                            <br><small><em>Waiver: 
+                                                <span id="waiver-preview-list-{{ appointment.id }}">
+                                                    {{ appointment.waiver.get_formatted_content|linebreaksbr|truncatewords:10 }}
+                                                    <a href="#" onclick="toggleWaiverList({{ appointment.id }}); return false;">See more</a>
+                                                </span>
+                                                <span id="waiver-full-list-{{ appointment.id }}" style="display: none;">
+                                                    {{ appointment.waiver.get_formatted_content|linebreaksbr }}
+                                                    <a href="#" onclick="toggleWaiverList({{ appointment.id }}); return false;">See less</a>
+                                                </span>
+                                            </em></small>
+                                        {% endif %}
+                                    </p>
                                 {% endfor %}
                             </td>
                         </tr>
@@ -42,4 +62,18 @@
     {% else %}
         <p>{% trans 'No appointments available.' %}</p>
     {% endif %}
+
+    <script>
+        function toggleWaiverList(id) {
+            var preview = document.getElementById('waiver-preview-list-' + id);
+            var full = document.getElementById('waiver-full-list-' + id);
+            if (preview.style.display === 'none') {
+                preview.style.display = 'inline';
+                full.style.display = 'none';
+            } else {
+                preview.style.display = 'none';
+                full.style.display = 'inline';
+            }
+        }
+    </script>
 {% endblock %}
